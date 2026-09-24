@@ -1,0 +1,265 @@
+:root {
+    --bg: #0F1116;
+    --bg-soft: #171A21;
+    --surface: #1E222B;
+    --border: #2B303C;
+    --text: #EDEFF3;
+    --text-dim: #8B92A3;
+    --gold: #FFC857;
+    --teal: #3ECF8E;
+    --danger: #E5544B;
+    --radius-lg: 28px;
+    --radius-md: 16px;
+    --font-display: Georgia, 'Iowan Old Style', 'Palatino Linotype', serif;
+    --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+html[data-theme="light"] {
+    --bg: #F3F1EC;
+    --bg-soft: #EAE7DE;
+    --surface: #FFFFFF;
+    --border: #DEDACD;
+    --text: #1B1B18;
+    --text-dim: #6B6A62;
+    --gold: #C98A1F;
+    --teal: #1F9C68;
+    --danger: #C0392B;
+}
+
+* { 
+    box-sizing: border-box; -webkit-tap-highlight-color: transparent; 
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    min-height: 100dvh;
+    width: 100%;
+    overflow-x: hidden;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+body { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+}
+
+nav {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: max(16px, env(safe-area-inset-top)) 16px 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.brand {
+    font-family: var(--font-display);
+    font-size: clamp(18px, 5vw, 22px);
+    font-style: italic;
+    color: var(--text);
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+    flex: none;
+}
+
+.brand span { 
+    color: var(--gold); 
+    font-style: normal; 
+}
+
+.star-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    padding: 7px 12px;
+    border-radius: 999px;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    font-size: 13px;
+    white-space: nowrap;
+    min-width: 0;
+}
+
+.star-pill svg { 
+    width: 14px; 
+    height: 14px; 
+    flex: none; 
+}
+
+.star-pill .of { 
+    color: var(--text-dim); 
+    font-weight: 500; 
+}
+
+.theme-toggle {
+    display: flex; 
+    align-items: center; 
+    gap: 6px;
+    background: none; 
+    border: 1px solid var(--border);
+    color: var(--text-dim); 
+    padding: 8px;
+    border-radius: 999px; 
+    cursor: pointer; 
+    font-size: 13px;
+    font-family: var(--font-body);
+    transition: border-color 0.2s ease, color 0.2s ease;
+    flex: none;
+    min-width: 36px;
+    min-height: 36px;
+    justify-content: center;
+}
+
+.theme-toggle:hover { 
+    border-color: var(--gold); 
+    color: var(--text); 
+}
+
+.theme-toggle svg { 
+    width: 15px; 
+    height: 15px; 
+    flex: none; 
+}
+
+main {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15vh 20px calc(40px + env(safe-area-inset-bottom));
+    text-align: center;
+}
+
+.eyebrow { 
+    color: var(--text-dim); 
+    font-size: 14px; 
+    margin: 0 0 10px; 
+}
+
+h1 {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(24px, 7vw, 30px);
+    line-height: 1.3;
+    margin: 0 0 40px;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+label {
+    text-align: left;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-left: 4px;
+}
+
+input[type="text"] {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 17px;
+    padding: 15px 18px;
+    border-radius: var(--radius-md);
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+input[type="text"]:focus { 
+    border-color: var(--gold); 
+}
+
+input[type="text"]::placeholder { 
+    color: var(--text-dim); 
+}
+
+.start-btn {
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    background: var(--gold);
+    color: #1B1400;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: 0.01em;
+    padding: 16px 0;
+    border-radius: var(--radius-md);
+    margin-top: 6px;
+    box-shadow: 0 10px 30px -12px rgba(255, 200, 87, 0.5);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+.start-btn:hover { 
+    transform: translateY(-2px); 
+    box-shadow: 0 14px 34px -12px rgba(255, 200, 87, 0.65); 
+}
+
+.start-btn:active { 
+    transform: translateY(0); 
+}
+
+.start-btn:disabled { 
+    opacity: 0.45; 
+    cursor: not-allowed; 
+    transform: none; 
+    box-shadow: none; 
+}
+
+footer {
+    color: var(--text-dim);
+    font-size: 13px;
+    padding: 12px 20px calc(32px + env(safe-area-inset-bottom));
+    text-align: center;
+}
+
+input[type="text"], .start-btn { 
+    min-height: 50px; 
+}
+
+@media (max-width: 380px) {
+    #themeLabel { 
+        display: none; 
+    }
+
+    .theme-toggle { 
+        padding: 8px; 
+    }
+
+    .star-pill { 
+        padding: 6px 10px; 
+        font-size: 12px; 
+    }
+
+    nav { 
+        padding-left: 12px; 
+        padding-right: 12px; 
+    }
+}
+
+@media (max-height: 640px) {
+    main { 
+        padding-top: 8vh; 
+    }
+
+    h1 {
+         margin-bottom: 28px; 
+    }
+}
