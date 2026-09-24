@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/app.css">
+        <title>Thousand - Progress</title>
+    </head>
+
+    <body>
+
+        <div id="errorBanner" style="display: none;"></div>
+        <nav>
+            <div class="brand">Thou<span>sand</span></div>
+            <div class="star-pill">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6L12 2z" fill="currentColor" style="color: var(--gold);"/>
+                </svg>
+                <span id="starCount">0</span><span class="of">&nbsp;/ 1000</span>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="M21 12.6A9 9 0 1 1 11.4 3a7 7 0 0 0 9.6 9.6z"/>
+                </svg>
+                <span id="themeLabel">dark</span>
+            </button>
+        </nav>
+
+        <div class="hello-row">
+            <div class="hello-badge">Hello, <span id="greetName">there</span> 👋</div>
+        </div>
+
+        <main>
+            <p class="eyebrow">the 1000 star method</p>
+            <h1>Here's where you stand today.</h1>
+
+            <div class="progress-card">
+                <div class="big-number"><span id="progressNumber">0</span> <span class="goal">/ 1000</span></div>
+                <div class="track"><div class="fill" id="progressFill" style="width: 0%"></div></div>
+                <div class="pct" id="progressPct">0% of the way there</div>
+            </div>
+
+            <div class="card">
+                <h2>Log a set</h2>
+
+                <label class="field-label" for="exerciseSearch">Exercise</label>
+                <input type="text" class="search-input" id="exerciseSearch" placeholder="Search exercises..." autocomplete="off">
+                <div class="exercise-list" id="exerciseList"></div>
+
+                <div class="amount-section" id="amountSection" style="display: none;">
+                    <label class="field-label" id="amountSection">How many?</label>
+                    <div class="chip-grid" id="presetRow">
+                        <button type="button" class="chip" id="moreBtn">More</button>
+                    </div>
+                    <input type="number" inputmode="decimal" min="0" step="any" class="custom-amount" id="customAmount" placeholder="Enter amount" style="display: none;">
+                </div>
+
+                <p class="reward-preview" id="rewardPreview" style="display: none;">= <span id="rewardStars">0</span> stars</p>
+
+                <button class="add-btn" id="addSetBtn" disabled>Add to total</button>
+            </div>
+
+            <div class="card">
+                <h2>Recent activity</h2>
+                <div class="log-list" id="logList"></div>
+            </div>
+
+            <div class="footer-row">
+                <button class="link-btn" id="changeNameBtn">not you? change name</button>
+            </div>
+        </main>
+
+        <div class="abyss">
+            <div class="spacer"></div>
+            <p class="whisper">Keep scrolling. There's nothing down here.</p>
+            <div class="spacer"></div>
+            <p class="whisper">Seriously. Go do some push-ups instead.</p>
+            <div class="spacer"></div>
+            <p class="whisper">Still here? Fine. Almost there.</p>
+            <div class="spacer"></div>
+        </div>
+
+        <div class="danger-zone">
+            <button class="clear-btn" id="clearDataBtn">Clear Data</button>
+        </div>
+
+        <div class="modal-backdrop" id="clearModal" style="display: none;"">
+            <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+                <h3 id="modalTitle">Do you really want to clear your data?</h3>
+                <p>Your name, your star total and every set you've logged will be gone. There's no undo.</p>
+                <div class="modal-actions">
+                    <button class="modal-btn keep" id="cancelClearBtn">No, I'm not an idiot</button>
+                    <button class="modal-btn wipe" id="confirmClearBtn">Yes, I'm 100 sure</button>
+                </div>
+            </div>
+        </div>
+
+        <script src="/js/app.js"></script>
+    </body>
+</html>

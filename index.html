@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+        <link rel="stylesheet" href="/css/style.css">
+        <title>Thousand Stars Training</title>
+    </head>
+
+<body>
+    
+    <nav>
+        <div class="brand">Thou<span>sand</span></div>
+        <div class="star-pill">
+            <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6L12 2z" fill="currentColor" style="color: var(--gold)"/>
+            </svg>
+            <span id="starCount">0</span><span class="of">&nbsp;/ 1000</span>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M21 12.6A9 9 0 1 1 11.4 3a7 7 0 0 0 9.6 9.6z"/>
+            </svg>
+
+            <span id="themeLabel">dark</span>
+        </button>
+    </nav>
+
+    <main>
+        <p class="eyebrow">the 1000 stars method <span class="copyright">© Danylo</span></p>
+        <h1>The website to track the progress using <span>Stars</span>.</h1>
+
+        <form id="nameForm">
+            <label for="nameInput">Enter your name</label>
+            <input type="text" id="nameInput" name="name" placeholder="e.g. Адольф" autocomplete="off" required>
+            <button type="submit" class="start-btn" id="startBtn" disabled>Start</button>
+        </form>
+    </main>
+
+    <footer>your name and progress stay on this device</footer>
+
+    
+    <script src="/js/script.js"></script>
+</body>
+</html>
