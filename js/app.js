@@ -393,7 +393,7 @@ function renderLog() {
 
         const metaDiv = document.createElement('div');
         metaDiv.className = 'log-meta';
-        metaDiv.textContent = entry.amount = ' ' + entry.unit + ' . ' + formatWhen(entry.at);
+        metaDiv.textContent = entry.amount + ' ' + entry.unit + ' . ' + formatWhen(entry.at);
         left.appendChild(nameDiv);
         left.appendChild(metaDiv);
 
