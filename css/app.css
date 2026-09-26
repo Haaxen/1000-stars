@@ -1,3 +1,137 @@
+/* -------- style.css ------- */
+:root {
+    --bg: #0F1116;
+    --bg-soft: #171A21;
+    --surface: #1E222B;
+    --border: #2B303C;
+    --text: #EDEFF3;
+    --text-dim: #8B92A3;
+    --gold: #FFC857;
+    --teal: #3ECF8E;
+    --danger: #E5544B;
+    --radius-lg: 28px;
+    --radius-md: 16px;
+    --font-display: Georgia, 'Iowan Old Style', 'Palatino Linotype', serif;
+    --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+html[data-theme="light"] {
+    --bg: #F3F1EC;
+    --bg-soft: #EAE7DE;
+    --surface: #FFFFFF;
+    --border: #DEDACD;
+    --text: #1B1B18;
+    --text-dim: #6B6A62;
+    --gold: #C98A1F;
+    --teal: #1F9C68;
+    --danger: #C0392B;
+}
+
+* { 
+    box-sizing: border-box; -webkit-tap-highlight-color: transparent; 
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    min-height: 100dvh;
+    width: 100%;
+    overflow-x: hidden;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+body { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+}
+
+nav {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: max(16px, env(safe-area-inset-top)) 16px 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.brand {
+    font-family: var(--font-display);
+    font-size: clamp(18px, 5vw, 22px);
+    font-style: italic;
+    color: var(--text);
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+    flex: none;
+}
+
+.brand span { 
+    color: var(--gold); 
+    font-style: normal; 
+}
+
+.star-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    padding: 7px 12px;
+    border-radius: 999px;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    font-size: 13px;
+    white-space: nowrap;
+    min-width: 0; /* only difference between style.css and app.css */
+}
+
+.star-pill svg { 
+    width: 14px; 
+    height: 14px; 
+    flex: none; 
+}
+
+.star-pill .of { 
+    color: var(--text-dim); 
+    font-weight: 500; 
+}
+
+.theme-toggle {
+    display: flex; 
+    align-items: center; 
+    gap: 6px;
+    background: none; 
+    border: 1px solid var(--border);
+    color: var(--text-dim); 
+    padding: 8px 12px;
+    border-radius: 999px; 
+    cursor: pointer; 
+    font-size: 13px;
+    font-family: var(--font-body);
+    transition: border-color 0.2s ease, color 0.2s ease;
+    flex: none;
+    min-height: 38px;
+    justify-content: center;
+}
+
+.theme-toggle:hover { 
+    border-color: var(--gold); 
+    color: var(--text); 
+}
+
+.theme-toggle svg { 
+    width: 15px; 
+    height: 15px; 
+    flex: none; 
+}
+
 .hello-row {
     width: 100%;
     max-width: 900px;
@@ -15,20 +149,37 @@
 .hello-badge #greetName {
     color: var(--text);
     font-weight: 600;
+    cursor: default;
+}
+
+.hello-badge #greetName:hover {
+    color: var(--gold);
+    transition: color 0.2s ease;
 }
 
 main {
+    width: 100%;
     max-width: 480px;
-    padding: 8vh 20px calc(48px + env(safe-area-inset-bottom));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 6px 20px 40px;
+    text-align: center;
+}
+
+.eyebrow { 
+    color: var(--text-dim); 
+    font-size: 14px; 
+    margin: 0 0 10px; 
 }
 
 h1 {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
     font-size: clamp(22px, 6.5vw, 30px);
-}
-
-h1 span {
-    color: var(--gold);
-    font-style: normal;
+    line-height: 1.3;
+    margin: 0 0 32px;
 }
 
 .progress-card, .card {
@@ -36,7 +187,6 @@ h1 span {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    padding: clamp(28px, 7vw, 36px) clamp(20px, 6vw, 32px);
 }
 
 .progress-card {
@@ -83,7 +233,7 @@ h1 span {
 .fill {
     height: 100%;
     background: var(--gold);
-    border-radius: 999px;
+    /* border-radius: 999px; */
     transition: width 0.4s ease;
 }
 
@@ -104,9 +254,10 @@ h1 span {
     background: var(--bg-soft);
     border: 1px solid var(--border);
     color: var(--text);
-    font-family: var(--font-display);
+    font-family: var(--font-body);
     font-size: 16px;
     padding: 12px 16px;
+    min-height: 46px;
     border-radius: var(--radius-md);
     outline: none;
     transition: border-color 0.2s ease;
@@ -116,8 +267,7 @@ h1 span {
     margin-bottom: 12px;
 }
 
-.search-input:focus, 
-.custom-amount:focus {
+.search-input:focus, .custom-amount:focus {
     border-color: var(--gold);
 }
 
@@ -152,15 +302,18 @@ h1 span {
 .exercise-row:hover {
     border-color: var(--gold);
 }
+
 .exercise-row.selected {
     border-color: var(--gold);
     background: rgba(255, 200, 87, 0.14);
 }
+
 .exercise-row .rate {
     color: var(--text-dim);
     font-size: 12px;
     white-space: nowrap;
 }
+
 .exercise-empty {
     color: var(--text-dim);
     font-size: 14px;
@@ -190,7 +343,6 @@ h1 span {
     border-radius: 999px;
     cursor: pointer;
     transition: border-color 0.15s ease, background 0.15s ease;
-
 }
 
 .chip:hover {
@@ -209,7 +361,7 @@ h1 span {
 }
 
 .reward-preview {
-    margin-top: 18px 0 0;
+    margin: 18px 0 0;
     font-family: var(--font-display);
     font-style: italic;
     font-size: 20px;
@@ -262,20 +414,21 @@ h1 span {
     border-bottom: none;
     padding-bottom: 0;
 }
+
 .log-item .log-name {
     font-weight: 600;
 }
+
 .log-item .log-meta {
-    color: var(--text-dim);
-    font-size: 12px;
+    color: var(--gold);
+    font-weight: 700;
+    white-space: nowrap;
 }
-.log-item .log-stars {
-    color: var(--text-dim);
-    font-size: 14px;
-}
+
 .log-empty {
     color: var(--text-dim);
     font-size: 14px;
+    margin: 0;
 }
 
 .data-warning {
@@ -285,7 +438,7 @@ h1 span {
     line-height: 1.5;
 }
 
-/* journey to the clear data btn */
+/* ---- the long journey to the Clear and Source data button ---- */
 .abyss {
     width: 100%;
     max-width: 480px;
@@ -305,11 +458,10 @@ h1 span {
     opacity: 0.55;
 }
 
-/* Danger zone */
 .danger-zone {
     width: 100%;
     max-width: 480px;
-    padding: 0 20px calc(60px + env(safe-area-inset-bottom));
+    padding: 0 20px calc(60px + env(safe-area-inset-top));
     text-align: center;
 }
 
@@ -332,10 +484,36 @@ h1 span {
     color: #fff;
 }
 
+.source-btn {
+    appearance: none;
+    background: none;
+    border: 1px solid var(--text);
+    color: var(--text);
+    font-family: var(--font-body);
+    padding: 12px 21px;
+    font-size: 14px;
+    min-height: 46px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.source-btn svg {
+    width: 15px;
+    height: 15px;
+    flex: 0;
+}
+
+.source-btn:hover {
+    background: var(--text);
+    color: #1B1400;
+}
+
 .footer-row {
-    margin-top: 40px;
+    margin-top: 32px;
     display: flex;
     gap: 10px;
+    justify-content: center;
 }
 
 .link-btn {
@@ -345,9 +523,10 @@ h1 span {
     font-family: var(--font-body);
     font-size: 13px;
     padding: 11px 18px;
-    min-height: 40px;
+    min-height: 42px;
     border-radius: 999px;
     cursor: pointer;
+    margin-bottom: 678vh;
 }
 
 .link-btn:hover {
@@ -355,7 +534,7 @@ h1 span {
     border-color: var(--gold);
 }
 
-/* ----  confirmation modal  ---- */
+/* ---- confirmation modal ---- */
 .modal-backdrop {
     position: fixed;
     inset: 0;
@@ -371,7 +550,7 @@ h1 span {
 .modal {
     width: 100%;
     max-width: 380px;
-    background: var(--surface);
+    background: rgba(0, 0, 0, 0.6);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     padding: 32px 26px 26px;
@@ -418,37 +597,56 @@ h1 span {
     color: #1B1400;
 }
 
-.modal-btn.wipe {
+.modal-btn.clear {
     background: none;
     border: 1px solid var(--danger);
     color: var(--danger);
     font-weight: 500;
 }
 
-.modal-btn.wipe:hover {
+.modal-btn.clear:hover {
     background: var(--danger);
     color: #fff;
+}
+
+#errorBanner {
+    width: 100%;
+    background: var(--danger);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 12px 16px;
+    text-align: left;
+    word-break: break-word;
 }
 
 [hidden] {
     display: none !important;
 }
 
-.note {
-    margin-top: 32px;
-    color: var(--text-dim);
-    font-size: 14px;
-    line-height: 1.6;
-    max-width: 34ch;
-}
-
-
-
-@media (max-height: 640px) {
-    main {
-        padding-top: 5vh;
+@media (max-width: 380px) {
+    #themeLabel {
+        display: none;
     }
-    h1 {
-        margin-bottom: 28px;
+
+    .theme-toggle {
+        padding: 8px;
+        min-width: 38px;
+    }
+
+    .star-pill {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    nav {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .hello-row {
+        padding-left: 12px;
+        padding-right: 12px;
     }
 }
