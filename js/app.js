@@ -69,12 +69,12 @@ if (!name) {
 let currentStars = Math.max(0, parseInt(safeGet('thousand-stars') || '0', 10) || 0);
 
 function refreshProgress() {
-    const pct = Math.min(100, Math.round((currentStars / GOAL) * 100));
+    const pct = Math.round((currentStars / GOAL) * 100);
     document.getElementById('starCount').textContent = currentStars.toLocaleString();
     document.getElementById('progressNumber').textContent = currentStars.toLocaleString();
     document.getElementById('progressFill').style.width = pct + '%';
     document.getElementById('progressPct').textContent = 
-        currentStars >= GOAL ? "You've completed the 1000!" : pct + '% of the way there';
+        currentStars >= GOAL ? 'Gaddem you made it up to' + pct + '%' : pct + '% of the way to the goal';
 }
 refreshProgress();
 
