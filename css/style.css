@@ -164,6 +164,14 @@ form {
     gap: 14px;
 }
 
+#startError {
+    width: 100%;
+    margin: 16px 0 0;
+    color: var(--danger);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
 label {
     text-align: left;
     font-size: 13px;
