@@ -427,12 +427,20 @@ h1 {
 }
 
 .log-item-main {
+    appearance: none;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
     font-size: 14px;
     cursor: pointer;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: inherit;
+    font-family: inherit;
+    text-align: left;
 }
 
 .log-item .log-name {
@@ -593,6 +601,11 @@ h1 {
 .link-btn:hover {
     color: var(--text);
     border-color: var(--gold);
+}
+
+.view-more-btn {
+    display: block;
+    margin: 18px auto 0;
 }
 
 /* ---- confirmation modal ---- */

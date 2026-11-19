@@ -45,10 +45,15 @@ document.getElementById('themeToggle').addEventListener('click', function () {
 });
 
 /* ---------- Name ---------- */
-const name = safeGet('thousand-name');
+const nameFromUrl = new URLSearchParams(window.location.search).get('name');
+const name = nameFromUrl || safeGet('thousand-name');
 if (!name) {
-    window.location.replace('index.html');
+    window.location.replace(new URL('./index.html?name-required=1', window.location.href).href);
 } else {
+    if (nameFromUrl) {
+        safeSet('thousand-name', name);
+        try { history.replaceState(null, '', window.location.pathname); } catch (e) { /* file URL history may be restricted */ }
+    }
     document.getElementById('greetName').textContent = name;
 }
 
@@ -128,7 +133,7 @@ refreshProgress(false);
     ============================================================ */
 const FALLBACK_EXERCISES = {
 "pull-up": 10,
-"squads": 1,
+"squats": 1,
 "push-up": 1,
 "biceps": 2,
 "plank": "50 stars per minute",
@@ -163,6 +168,7 @@ if (typeof value === 'number') {
 }
 const match = /^(\d+(?:\.\d+)?)\s*stars?\s*per\s*(\d+)?\s*(minute|minutes|second|seconds)$/i
     .exec(String(value).trim());
+    
 if (!match) return { type: 'reps', starsPerRep: 0 };
 const stars = parseFloat(match[1]);
 const amount = match[2] ? parseFloat(match[2]) : 1;
@@ -356,6 +362,10 @@ try { return JSON.parse(safeGet('thousand-log') || '[]'); } catch (e) { return [
 }
 function setLog(log) { safeSet('thousand-log', JSON.stringify(log)); }
 
+const INITIAL_LOG_COUNT = 5;
+const LOG_PAGE_SIZE = 20;
+let visibleLogCount = INITIAL_LOG_COUNT;
+
 function formatWhen(ts) {
 const mins = Math.round((Date.now() - ts) / 60000);
 if (mins < 1) return 'just now';
@@ -369,6 +379,7 @@ return days + ' day' + (days === 1 ? '' : 's') + ' ago';
 function renderLog() {
 const log = getLog();
 const logListEl = document.getElementById('logList');
+const viewMoreBtn = document.getElementById('viewMoreLogBtn');
 logListEl.innerHTML = '';
 
 if (log.length === 0) {
@@ -376,10 +387,11 @@ if (log.length === 0) {
     empty.className = 'log-empty';
     empty.textContent = "Nothing logged yet — your sets will show up here.";
     logListEl.appendChild(empty);
+    hide(viewMoreBtn);
     return;
 }
 
-log.forEach(function (entry, index) {
+log.slice(0, visibleLogCount).forEach(function (entry, index) {
     const row = document.createElement('div');
     row.className = 'log-item';
 
@@ -430,7 +442,19 @@ log.forEach(function (entry, index) {
     row.appendChild(deleteBtn);
     logListEl.appendChild(row);
 });
+
+if (log.length > visibleLogCount) {
+    viewMoreBtn.textContent = visibleLogCount === INITIAL_LOG_COUNT ? 'View more' : 'View even more';
+    show(viewMoreBtn, 'inline-flex');
+} else {
+    hide(viewMoreBtn);
 }
+}
+
+document.getElementById('viewMoreLogBtn').addEventListener('click', function () {
+visibleLogCount += LOG_PAGE_SIZE;
+renderLog();
+});
 
 function deleteLogEntry(index) {
 const log = getLog();
@@ -461,7 +485,7 @@ log.unshift({
     stars: reward,
     at: Date.now()
 });
-setLog(log.slice(0, 20));
+setLog(log);
 
 refreshProgress(true);
 renderLog();
@@ -477,7 +501,7 @@ renderExerciseList();
 
 document.getElementById('changeNameBtn').addEventListener('click', function () {
 safeRemove('thousand-name');
-window.location.href = 'index.html';
+window.location.href = new URL('./index.html?change-name=1', window.location.href).href;
 });
 
 /* ----------  Open Source  ---------- */
@@ -497,7 +521,7 @@ safeRemove('thousand-stars');
 safeRemove('thousand-log');
 safeRemove('thousand-skip-delete-confirm');
 closeModal();
-window.location.href = 'index.html';
+window.location.href = new URL('./index.html?clear-data=1', window.location.href).href;
 });
 clearModal.addEventListener('click', function (e) {
 if (e.target === clearModal) closeModal();
